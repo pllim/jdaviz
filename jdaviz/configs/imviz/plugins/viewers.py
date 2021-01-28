@@ -19,6 +19,11 @@ class DummyModelID:
         self.layout = DummyLayout()
 
 
+class DummyState:
+    def __init__(self):
+        self.layers = []
+
+
 class ImvizImageWidget(ImageWidget):
     """Image widget for Imviz."""
 
@@ -61,7 +66,11 @@ class ImvizImageWidget(ImageWidget):
     def viewer_options(self):
         return DummyModelID()
 
+    def set_plot_axes(self, *args, **kwargs):
+        pass
+
 
 @viewer_registry("imviz-image-viewer", label="Image 2D (Imviz)")
 class ImvizImageView(ImvizImageWidget):
     default_class = None
+    state = DummyState()
