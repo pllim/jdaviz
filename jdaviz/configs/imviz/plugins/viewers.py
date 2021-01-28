@@ -24,8 +24,12 @@ class DummyState:
         self.layers = []
 
 
-class ImvizImageWidget(ImageWidget):
+@viewer_registry("imviz-image-viewer", label="Image 2D (Imviz)")
+class ImvizImageView(ImageWidget):
     """Image widget for Imviz."""
+
+    default_class = None
+    state = DummyState()
 
     # session is a glue thing
     def __init__(self, session, *args, **kwargs):
@@ -69,8 +73,8 @@ class ImvizImageWidget(ImageWidget):
     def set_plot_axes(self, *args, **kwargs):
         pass
 
-
-@viewer_registry("imviz-image-viewer", label="Image 2D (Imviz)")
-class ImvizImageView(ImvizImageWidget):
-    default_class = None
-    state = DummyState()
+    def data(self, cls=None):
+        return [layer_state.layer
+                for layer_state in self.state.layers
+                if hasattr(layer_state, 'layer') and
+                isinstance(layer_state.layer, BaseData)]
