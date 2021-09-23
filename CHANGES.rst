@@ -10,6 +10,8 @@ Cubeviz
 Imviz
 ^^^^^
 
+- New plugin to control image linking via GUI. [#909]
+
 Mosviz
 ^^^^^^
 
