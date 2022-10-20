@@ -23,6 +23,8 @@ Mosviz
 Specviz
 ^^^^^^^
 
+- Spectrum viewer now shows X and Y values under cursor. [#1759]
+
 Specviz2d
 ^^^^^^^^^
 
