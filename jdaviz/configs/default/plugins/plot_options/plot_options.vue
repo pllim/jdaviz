@@ -19,6 +19,14 @@
                 persistent-hint
               ></v-switch>
             </v-row>
+            <v-row>
+              <v-switch v-if="config=='specviz'"
+                v-model="show_mouseover_marker"
+                label="Show mouseover marker"
+                hint="Whether to show a marker at the mouse position"
+                persistent-hint
+              ></v-switch>
+            </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
