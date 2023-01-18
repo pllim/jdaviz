@@ -23,7 +23,7 @@
               <v-switch v-if="config=='specviz'"
                 v-model="show_mouseover_marker"
                 label="Show mouseover marker"
-                hint="Whether to show a marker at the mouse position"
+                hint="Show a marker at the mouse position"
                 persistent-hint
               ></v-switch>
             </v-row>
