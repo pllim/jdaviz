@@ -226,6 +226,28 @@ results are displayed under the :guilabel:`CALCULATE` button.
     :ref:`Export Photometry <imviz_export_photometry>`
         Documentation on exporting photometry results.
 
+.. _rotate-image-simple:
+
+Simple Image Rotation
+=====================
+
+.. warning::
+
+    Distortion is ignored, so using this plugin on distorted data is
+    not recommended.
+
+This plugins rotates image(s) by its celestial axes by the given angle.
+You can select data but the option only shows when applicable.
+You can enter the desired rotation angle in degrees.
+When the angle is zero, it will align image(s) to N-up and E-left orientation.
+If an image does not have a valid WCS, it will not be rotated.
+Click on the :guilabel:`ROTATE` button to finalize.
+Click on the :guilabel:`RESET` to restore the original WCS.
+
+Linking is global across Imviz, regardless of the viewer.
+Therefore, when WCS is rotated, it will propagate to all
+the viewers when multiple viewers are open.
+
 .. _imviz-catalogs:
 
 Catalog Search

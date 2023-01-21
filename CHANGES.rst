@@ -12,6 +12,9 @@ Cubeviz
 Imviz
 ^^^^^
 
+- New Simple Image Rotation plugin to rotate the celestial axes of
+  images if they have valid WCS. [#1972]
+
 Mosviz
 ^^^^^^
 - Reliably retrieves identifier using each datasets' metadata entry. [#1851]
