@@ -371,37 +371,17 @@ def _nddata_to_glue_data(ndd, data_label):
     if ndd.data.ndim != 2:
         raise ValueError(f'Imviz cannot load this NDData with ndim={ndd.data.ndim}')
 
-    for attrib, sub_attrib in zip(
-            ['data', 'mask', 'uncertainty'],
-            [None, None, 'array']
-    ):
+    for attrib in ('data', 'mask', 'uncertainty'):
         arr = getattr(ndd, attrib)
         if arr is None:
             continue
-        cur_data = Data()
+        comp_label = attrib.upper()
+        cur_label = f'{data_label}[{comp_label}]'
+        cur_data = Data(label=cur_label)
         cur_data.meta.update(standardize_metadata(ndd.meta))
         if ndd.wcs is not None:
             cur_data.coords = ndd.wcs
         raw_arr = arr
-
-        if sub_attrib is not None:
-            # since NDDataArray.uncertainty may be an object like
-            # StdDevUncertainty, we need to take another attr
-            # like StdDevUncertainty.array:
-            base_arr = getattr(raw_arr, sub_attrib)
-        else:
-            base_arr = raw_arr
-        wcs_only = np.all(np.isnan(base_arr))
-
-        if 'WCS-ONLY' not in cur_data.meta or not cur_data.meta.get('WCS-ONLY'):
-            cur_data.meta.update({'WCS-ONLY': wcs_only})
-
-        cur_label = f'{data_label}'
-        comp_label = attrib.upper()
-        if not wcs_only:
-            cur_label += f'[{comp_label}]'
-        cur_data.label = cur_label
-
         if attrib == 'data':
             bunit = ndd.unit or ''
         elif attrib == 'uncertainty':
