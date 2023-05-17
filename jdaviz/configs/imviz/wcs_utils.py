@@ -414,7 +414,7 @@ def _get_rotated_nddata_from_label(app, data_label, rotation_angle, refdata_shap
     Returns
     -------
     ndd : `~astropy.nddata.NDData`
-        Data are garbage but WCS is nicely rotated.
+        Contains rotated WCS and meaningless data.
 
     Raises
     ------
