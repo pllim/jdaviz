@@ -312,8 +312,7 @@ def _rotated_gwcs(
     )
 
     # Multiplying by +/-1 can flip north/south or east/west.
-    e_sign = -1  # We want E-left by default.
-    flip_axes = models.Multiply(e_sign * cdelt_signs[0]) & models.Multiply(cdelt_signs[1])
+    flip_axes = models.Multiply(cdelt_signs[0]) & models.Multiply(cdelt_signs[1])
     rotation = models.AffineTransformation2D(
         rotation_matrix * u.deg, translation=[0, 0] * u.deg
     )
@@ -381,9 +380,10 @@ def _prepare_rotated_nddata(real_image_shape, wcs, rotation_angle, refdata_shape
         central_world_coord, rotation_angle, pixel_scales, cdelt_signs
     )
 
-    # create a fake NDData with the rotated GWCS:
+    # create a fake NDData (we use arange so data boundaries show up in Imviz
+    # if it ever is accidentally exposed) with the rotated GWCS:
     ndd = NDData(
-        data=np.empty(refdata_shape, dtype=np.int8),
+        data=np.arange(sum(refdata_shape), dtype=np.int8).reshape(refdata_shape),
         wcs=new_rotated_gwcs,
         meta={wcs_only_key: True}
     )

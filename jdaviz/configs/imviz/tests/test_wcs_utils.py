@@ -8,7 +8,7 @@ from gwcs import coordinate_frames as cf
 from numpy.testing import assert_allclose
 
 from jdaviz.configs.imviz import wcs_utils
-from jdaviz.configs.imviz.plugins.parsers import _nddata_to_glue_data
+from jdaviz.configs.imviz.plugins.parsers import _wcsonly2data
 from jdaviz.configs.imviz.tests.utils import BaseImviz_WCS_GWCS
 
 
@@ -123,8 +123,7 @@ class TestWCSOnly(BaseImviz_WCS_GWCS):
             rotation_angle=5 * u.deg
         )
         wcs_only_data_label = self.imviz.app._wcs_only_label
-        for wcs_only_data, _ in _nddata_to_glue_data(ndd, wcs_only_data_label):
-            break  # Can stop after first iteration
+        wcs_only_data = _wcsonly2data(ndd, wcs_only_data_label)
         self.imviz.app.add_data(wcs_only_data, wcs_only_data_label)
         self.imviz.app.add_data_to_viewer("imviz-0", wcs_only_data_label, visible=False)
 

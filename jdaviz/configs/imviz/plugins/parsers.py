@@ -402,3 +402,16 @@ def _ndarray_to_glue_data(arr, data_label):
     component = Component.autotyped(arr)
     data.add_component(component=component, label='DATA')
     yield (data, data_label)
+
+
+# ---- Functions that handle WCS-only data -----
+
+def _wcsonly2data(ndd, data_label):
+    """Return Data given NDData containly WCS-only data."""
+    arr = ndd.data
+    data = Data(label=data_label)
+    data.meta.update(standardize_metadata(ndd.meta))
+    data.coords = ndd.wcs
+    component = Component.autotyped(arr, units="")
+    data.add_component(component=component, label="DATA")
+    return data
