@@ -410,7 +410,7 @@ def _ndarray_to_glue_data(arr, data_label):
 
 # ---- Functions that handle WCS-only data -----
 
-def _wcsonly2data(ndd, data_label):
+def _wcsonly_to_glue_data(ndd, data_label):
     """Return Data given NDData containing WCS-only data."""
     arr = ndd.data
     data = Data(label=data_label)
