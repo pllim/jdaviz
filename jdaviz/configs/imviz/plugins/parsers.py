@@ -139,7 +139,7 @@ def get_image_data_iterator(app, file_obj, data_label, ext=None):
 
     elif isinstance(file_obj, NDData):
         if file_obj.meta.get(app._wcs_only_label, False):
-            data_iter = _wcsonly2data(file_obj, data_label)
+            data_iter = _wcsonly_to_glue_data(file_obj, data_label)
         else:
             data_iter = _nddata_to_glue_data(file_obj, data_label)
 
