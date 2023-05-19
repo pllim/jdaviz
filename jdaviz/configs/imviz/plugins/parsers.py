@@ -26,7 +26,6 @@ __all__ = ['parse_data']
 
 INFO_MSG = ("The file contains more viewable extensions. Add the '[*]' suffix"
             " to the file name to load all of them.")
-wcs_only_key = "_WCS_ONLY"
 
 
 @data_parser_registry("imviz-data-parser")
@@ -139,7 +138,7 @@ def get_image_data_iterator(app, file_obj, data_label, ext=None):
         data_iter = _hdu_to_glue_data(file_obj, data_label)
 
     elif isinstance(file_obj, NDData):
-        if file_obj.meta.get(wcs_only_key, False):
+        if file_obj.meta.get(app._wcs_only_label, False):
             data_iter = _wcsonly2data(file_obj, data_label)
         else:
             data_iter = _nddata_to_glue_data(file_obj, data_label)
@@ -173,7 +172,7 @@ def _parse_image(app, file_obj, data_label, ext=None):
             # for outside_*_bounding_box should also be updated.
             data.coords._orig_bounding_box = data.coords.bounding_box
             data.coords.bounding_box = None
-        if not data.meta.get(wcs_only_key, False):
+        if not data.meta.get(app._wcs_only_label, False):
             data_label = app.return_data_label(data_label, alt_name="image_data")
         app.add_data(data, data_label)
 
