@@ -7,6 +7,8 @@ New Features
 - Plots in plugins now include basic zoom/pan tools for Plot Options,
   Imviz Line Profiles, and Imviz's aperture photometry. [#2498]
 
+- Colorbar now shown on top of the histogram in Plot Options for image viewers. [#2517]
+
 Cubeviz
 ^^^^^^^
 
@@ -18,7 +20,6 @@ Imviz
 ^^^^^
 
 - Aperture photometry (previously "Imviz Simple Aperture Photometry") now supports batch mode. [#2465]
-
 
 - Expose sky regions in get_subsets. If 'include_sky_region' is True, a sky Region will be returned (in addition to a pixel Region) for spatial subsets with parent data that was a WCS. [#2496]
 
